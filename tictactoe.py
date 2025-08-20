@@ -1,7 +1,7 @@
 import random
 def filled(arr):
-    for i in range(len(arr)-1):
-        for j in range(len(arr)-1):
+    for i in range(len(arr)):
+        for j in range(len(arr)):
             if arr[i][j] == 0:
                 return False
 
@@ -12,7 +12,8 @@ def haswon(arr):
         x1, y1 = 0, 0
         x2, y2 = 0, 0
         x3, y3 = 0, 0
-        for j in range(len(arr)-1):
+        x4, y4 = 0, 0
+        for j in range(len(arr)):
             if arr[i][j] == 'X':
                 x1 += 1
             elif arr[i][j] == '0':
@@ -55,40 +56,46 @@ def show(arr):
         print()
 
 
-arr = [[0]*3]*3
-In = input("Enter X or Y here : ")
+arra = [[0]*3]*3
+In = input("Enter X or 0 here : ")
 comp = ""
 if In == 'X':
     comp = '0'
 else:
     comp = 'X'
-show(arr)
-while haswon(arr) == 'No' and not filled(arr):
+show(arra)
+while haswon(arra) == 'No' and not filled(arra):
     i = int(input("Enter x axis : "))
     j = int(input("Enter y axis : "))
-    while arr[i][j] == 0:
+    while arra[i][j] != 0:
         i = int(input("Enter x axis : "))
         j = int(input("Enter y axis : "))
 
-    arr[i][j] = In    
+    arra[i][j] = In    
 
     i1 = random.randint(0, 2)
     j1 = random.randint(0, 2)
-    while arr[i][j] == 0  and not filled(arr):
-        i1 = random.randint(0, 2)
-        j1 = random.randint(0, 2)
+    if not filled(arra):
+        while arra[i][j] != 0:
+            i1 = random.randint(0, 2)
+            j1 = random.randint(0, 2)
 
-    arr[i1][j1] = comp
-
-
-    show(arr)
+        arra[i1][j1] = comp
 
 
-if haswon(arr) == In:
+    show(arra)
+
+
+if haswon(arra) == In:
     print("Player won")
 
-if haswon(arr) == comp:
+if haswon(arra) == comp:
     print("Player lost")
 
-if haswon(arr) ==  'No' and filled(arr):
+if haswon(arra) ==  'No' and filled(arra):
     print("It was a draw")   
+
+
+    
+
+ 
